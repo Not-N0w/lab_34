@@ -6,29 +6,15 @@ public class Human extends Creature {
 
     private Emotion _emotion;
 
-    private String emotionToString(Emotion emotion) {
-        switch (emotion) {
-            case Emotion.Happy:
-                return "счастливо";
-            case Emotion.Sad:
-                return "грустно";
-            case Emotion.Lovely:
-                return "в любви";
-            case Emotion.Scary:
-                return "в страхе";
-            default:
-                return "";
-        }
-    }
-
     public Human(String name, int age, String[] properties) {
         super(name, age, properties);
     }
-    public String getStringEmotion() {
-        return emotionToString(_emotion);
-    }
+
     public void setEmotion(Emotion emotion) {
         this._emotion = emotion;
+    }
+    public Emotion getEmotion() {
+        return this._emotion;
     }
     public void think(Object ... objs) {
         String out = this.getName() + " подумал о ";
@@ -51,7 +37,7 @@ public class Human extends Creature {
         String out = super.toString();
         out = out.substring(0,out.length()-2);
         try {
-            out += "\n    emotion: " + this.getStringEmotion() + "\n}";
+            out += "\n    emotion: " + this._emotion.name() + "\n}";
         }
         catch(Exception e) {
             out += "\n    emotion: null\n}";

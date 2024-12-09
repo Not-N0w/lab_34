@@ -44,7 +44,7 @@ public class World {
             System.out.println( "-> " + dragon.toString());
             System.out.println("\n");
         }
-        System.out.println("----------------------------------------------------------\n");
+        System.out.println("-".repeat(50) + "\n");
 
         urashima.setPlace(castle);
         princess.setPlace(castle);
@@ -61,7 +61,7 @@ public class World {
         System.out.println("-> " +princess.toString());
         System.out.println("\n");
 
-        System.out.println("----------------------------------------------------------\n");
+        System.out.println("-".repeat(50) + "\n");
 
         try {
             Sun sun = new Sun("Солнце", (Math.random() > 0.5 ? true : false));
@@ -76,7 +76,7 @@ public class World {
         }
 
         System.out.println("\n");
-        System.out.println("----------------------------------------------------------\n");
+        System.out.println("-".repeat(50) + "\n");
 
         System.out.println(turtle.toString());
         System.out.println("\n");

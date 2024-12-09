@@ -15,10 +15,15 @@ public class Dragon extends Creature {
         String out = this.getName() + " охраняет " + place.getName();
         System.out.println(out);
     }
+    public void go_to(Object obj) {
+        Positional pos = (Positional) obj;
+        this.setPlace(pos.getPlace());
+        System.out.println(this.getName() + " подлетел к " + this.getPlace().getName());
+    }
+    
     @Override 
     public String toString() {
         String out = this.getName() + " {\n";
-        
         try {
             out += "    properties: [";
             for(String prop : this.getProperties()) {
@@ -40,9 +45,21 @@ public class Dragon extends Creature {
         out += "}";
         return out;
     }
-    public void go_to(Object obj) {
-        Positional pos = (Positional) obj;
-        this.setPlace(pos.getPlace());
-        System.out.println(this.getName() + " подлетел к " + this.getPlace().getName());
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Dragon dragon = (Dragon) obj;
+        return super.equals(dragon) && this._guarding.equals(dragon._guarding);
+    }
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (_guarding != null ? _guarding.hashCode() : 0);
+        return result;
     }
 }

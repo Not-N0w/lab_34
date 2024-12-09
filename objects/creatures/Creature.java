@@ -9,12 +9,14 @@ public abstract class Creature implements Positional{
     private Place _place;
     private int _age;
 
+
     public Creature(String name, int age, String[] properties) {
         _properties = properties;
         _name = name;
         _age = age;
     }
 
+    public abstract void go_to(Object obj);
     public void setPlace(Place place) {
         this._place = place;
     }
@@ -36,9 +38,6 @@ public abstract class Creature implements Positional{
             return this._place;
         }
     }
-
-
-    public abstract void go_to(Object obj);
     @Override 
     public String toString() {
         String out = this.getName() + " {\n";

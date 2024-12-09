@@ -23,7 +23,7 @@ public final class Urashima extends Human {
     public void live(int years, Human ... with) {
         super.live(years);
         this.setEmotion(Emotion.Happy);
-        String out = this.getName() + " прожил " + this.getStringEmotion() + " ";
+        String out = this.getName() + " прожил " + this.getEmotion().name() + " ";
         out += Integer.toString(years) + " лет c ";
         for(Creature who : with) {
             try {

@@ -13,7 +13,6 @@ public final class Castle extends Place{
         _isShining = true;
         System.out.println(this.getName() + " сверкал");
     }
-
     @Override 
     public String toString() {
         String out = this.getName() + " {\n";

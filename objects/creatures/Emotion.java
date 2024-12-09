@@ -4,5 +4,5 @@ public enum Emotion {
     Happy,
     Sad,
     Lovely,
-    Scary
+    Scary;
 }

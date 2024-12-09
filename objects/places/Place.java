@@ -3,7 +3,7 @@ package objects.places;
 import objects.Positional;
 
 public class Place implements Positional{
-    private String _name;
+    private final String _name;
     private String[] _properties;
 
     public Place(String name, String[] properties) {
@@ -20,13 +20,11 @@ public class Place implements Positional{
     public Place getPlace() {
         return this;
     }
-
     @Override
     protected Place clone() throws CloneNotSupportedException {
         Place res = new Place(_name, _properties);
         return res;
     }
-    
     @Override 
     public String toString() {
         String out = this.getName() + " {\n";
@@ -44,4 +42,19 @@ public class Place implements Positional{
         out += "}";
         return out;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Place place = (Place) obj;
+
+        return _name.equals(place._name)
+                && java.util.Arrays.equals(_properties, place._properties); 
+    }
+
 }
