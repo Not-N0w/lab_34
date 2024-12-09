@@ -5,7 +5,7 @@ import objects.places.Place;
 
 public abstract class Creature implements Positional{
     private String[] _properties;
-    private String _name;
+    private final String _name;
     private Place _place;
     private int _age;
 
@@ -16,7 +16,7 @@ public abstract class Creature implements Positional{
         _age = age;
     }
 
-    public abstract void go_to(Object obj);
+    public abstract void go_to(Object obj) throws NotPositional;
     public void setPlace(Place place) {
         this._place = place;
     }
@@ -37,6 +37,9 @@ public abstract class Creature implements Positional{
         else {
             return this._place;
         }
+    }
+    public void live(int years) {
+        this._age += years;
     }
     @Override 
     public String toString() {
@@ -59,7 +62,28 @@ public abstract class Creature implements Positional{
         out += "}";
         return out;
     }
-    public void live(int years) {
-        this._age += years;
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Creature creature = (Creature) obj;
+        return _age == creature._age
+                && _name.equals(creature._name)
+                && (_place == null ? creature._place == null : _place.equals(creature._place))
+                && java.util.Arrays.equals(_properties, creature._properties);
     }
+    @Override
+    public int hashCode() {
+        int result = _name.hashCode();
+        result = 31 * result + _age;
+        result = 31 * result + (_place != null ? _place.hashCode() : 0);
+        result = 31 * result + java.util.Arrays.hashCode(_properties);
+        return result;
+    }
+
 }

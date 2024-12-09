@@ -20,6 +20,7 @@ public final class Urashima extends Human {
         }
         System.out.println(out);
     }
+    
     public void live(int years, Human ... with) {
         super.live(years);
         this.setEmotion(Emotion.Happy);
@@ -36,14 +37,13 @@ public final class Urashima extends Human {
         System.out.println(out.substring(0, out.length()-2));
     }
     @Override
-    public void go_to(Object obj) {
+    public void go_to(Object obj) throws NotPositional {
         try {
             Turtle tmp = (Turtle)obj;
             _met_turtle = true;
         }
         catch(Exception e) {}
+
         super.go_to(obj);
     }
-
-
 }

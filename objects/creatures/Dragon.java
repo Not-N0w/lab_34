@@ -15,7 +15,10 @@ public class Dragon extends Creature {
         String out = this.getName() + " охраняет " + place.getName();
         System.out.println(out);
     }
-    public void go_to(Object obj) {
+    public void go_to(Object obj) throws NotPositional {
+        if(!(obj instanceof Positional)) {
+            throw new NotPositional("К этому объекту нельзя подойти!");
+        }
         Positional pos = (Positional) obj;
         this.setPlace(pos.getPlace());
         System.out.println(this.getName() + " подлетел к " + this.getPlace().getName());
@@ -37,10 +40,10 @@ public class Dragon extends Creature {
         }
         try {
             out += "    place: " + this.getPlace().getName() + '\n';
-        } catch (Exception e) {}
+        } catch (Exception e) { out += "    place: null\n"; }
         try {
             out += "    guarding: " + this._guarding.getName() + '\n';
-        } catch (Exception e) {}
+        } catch (Exception e) { out += "    guarding: null\n"; }
         out += "    age: " + Integer.toString(this.getAge()) + "\n";
         out += "}";
         return out;

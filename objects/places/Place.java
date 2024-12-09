@@ -56,5 +56,10 @@ public class Place implements Positional{
         return _name.equals(place._name)
                 && java.util.Arrays.equals(_properties, place._properties); 
     }
-
+    @Override
+    public int hashCode() {
+        int result = _name.hashCode();
+        result = 31 * result + java.util.Arrays.hashCode(_properties);
+        return result;
+    }
 }

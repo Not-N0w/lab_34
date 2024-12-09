@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import objects.creatures.Dragon;
+import objects.creatures.NotPositional;
 import objects.creatures.Princess;
 import objects.creatures.Turtle;
 import objects.creatures.Urashima;
@@ -82,7 +83,11 @@ public class World {
         System.out.println("\n");
 
         if(Math.random() > 0.5) {
-            urashima.go_to(turtle);
+            try {
+                urashima.go_to(turtle);
+            } catch(NotPositional ex) {
+                System.out.println(ex.getMessage());
+            }
         }
         urashima.remember(family,village);
     }
