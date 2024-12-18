@@ -4,18 +4,18 @@ import objects.Positional;
 import objects.places.Place;
 
 public class Dragon extends Creature {
-    private Place _guarding;
+    private Place guarding;
 
     public Dragon(String name, int age, String[] properties) {
         super(name, age, properties);
-        _guarding = null;
+        guarding = null;
     }
     public void guard(Place place) {
-        _guarding = place;
+        guarding = place;
         String out = this.getName() + " охраняет " + place.getName();
         System.out.println(out);
     }
-    public void go_to(Object obj) throws NotPositional {
+    public void moveTo(Object obj) throws NotPositional {
         if(!(obj instanceof Positional)) {
             throw new NotPositional("К этому объекту нельзя подойти!");
         }
@@ -23,7 +23,6 @@ public class Dragon extends Creature {
         this.setPlace(pos.getPlace());
         System.out.println(this.getName() + " подлетел к " + this.getPlace().getName());
     }
-    
     @Override 
     public String toString() {
         String out = this.getName() + " {\n";
@@ -42,27 +41,28 @@ public class Dragon extends Creature {
             out += "    place: " + this.getPlace().getName() + '\n';
         } catch (Exception e) { out += "    place: null\n"; }
         try {
-            out += "    guarding: " + this._guarding.getName() + '\n';
+            out += "    guarding: " + this.guarding.getName() + '\n';
         } catch (Exception e) { out += "    guarding: null\n"; }
         out += "    age: " + Integer.toString(this.getAge()) + "\n";
         out += "}";
         return out;
     }
     @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + guarding.hashCode();
+        return result;
+    }
+    @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
+        if (this == obj) return true; 
+        if(this.hashCode() != obj.hashCode()) return false;
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Dragon dragon = (Dragon) obj;
-        return super.equals(dragon) && this._guarding.equals(dragon._guarding);
-    }
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (_guarding != null ? _guarding.hashCode() : 0);
-        return result;
+        Dragon dragon = (Dragon) obj; 
+
+        return super.equals(dragon) && this.guarding.equals(dragon.guarding);
     }
 }

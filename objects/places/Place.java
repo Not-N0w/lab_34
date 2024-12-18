@@ -3,26 +3,26 @@ package objects.places;
 import objects.Positional;
 
 public class Place implements Positional{
-    private final String _name;
-    private String[] _properties;
+    private final String name;
+    private String[] properties;
 
-    public Place(String name, String[] properties) {
-        _properties = properties;
-        _name = name;
+    public Place(String name_in, String[] properties_in) {
+        properties = properties_in;
+        name = name_in;
     }
 
     public String getName() {
-        return this._name;
+        return this.name;
     }
     public String[] getProperties() {
-        return this._properties;
+        return this.properties;
     }
     public Place getPlace() {
         return this;
     }
     @Override
     protected Place clone() throws CloneNotSupportedException {
-        Place res = new Place(_name, _properties);
+        Place res = new Place(name, properties);
         return res;
     }
     @Override 
@@ -44,22 +44,22 @@ public class Place implements Positional{
     }
 
     @Override
+    public int hashCode() {
+        int result = name.hashCode();
+        result = 31 * result + java.util.Arrays.hashCode(properties);
+        return result;
+    }
+    @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
+        if (this == obj) return true;
+        if(this.hashCode() != obj.hashCode()) return false;
+
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
         Place place = (Place) obj;
 
-        return _name.equals(place._name)
-                && java.util.Arrays.equals(_properties, place._properties); 
-    }
-    @Override
-    public int hashCode() {
-        int result = _name.hashCode();
-        result = 31 * result + java.util.Arrays.hashCode(_properties);
-        return result;
+        return name.equals(place.name)
+                && java.util.Arrays.equals(properties, place.properties); 
     }
 }

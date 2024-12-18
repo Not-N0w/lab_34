@@ -1,8 +1,18 @@
 package objects.creatures;
 
-public final class Princess extends Human {
-    public Princess(String name, int age, String[] properties) {
+import objects.Positional;
+
+public class Fish extends Creature{
+    public Fish(String name, int age, String[] properties) {
         super(name, age, properties);
+    }
+    public void moveTo(Object obj) throws NotPositional {
+        if(!(obj instanceof Positional)) {
+            throw new NotPositional("К этому объекту нельзя подойти!");
+        }
+        Positional pos = (Positional) obj;
+        this.setPlace(pos.getPlace());
+        System.out.println(this.getName() + " подплыла к " + this.getPlace().getName());
     }
     @Override 
     public String toString() {
@@ -25,5 +35,4 @@ public final class Princess extends Human {
         out += "}";
         return out;
     }
-    
 }

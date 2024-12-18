@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import objects.creatures.Dragon;
+import objects.creatures.Fish;
 import objects.creatures.NotPositional;
 import objects.creatures.Princess;
 import objects.creatures.Turtle;
@@ -13,6 +14,8 @@ import objects.others.Sun;
 import objects.places.Castle;
 import objects.places.Sea;
 import objects.places.Village;
+import objects.creatures.Fish;
+
 
 public class World {
     Random random = new Random();
@@ -30,8 +33,43 @@ public class World {
         Turtle turtle = new Turtle("Черепаха", random.nextInt(10) + 1, new String[]{"маленькая"});
         Village village = new Village("Деревня", null);
         Family family = new Family("Семья");
+        Fish fish = new Fish("Рыбка", random.nextInt(4) + 1, new String[]{"хрустальная", "с золотыми плавниками"});
 
         //Story
+        System.out.println(urashima.toString());
+        System.err.println();
+        System.out.println(princess.toString());
+        urashima.setCanTalk(false);
+        System.out.println( "-> " + urashima.toString());
+
+        System.out.println("-".repeat(50) + "\n");
+
+        urashima.setCanTalk(true);
+        urashima.say("Да");
+
+        System.err.println();
+        System.out.println(fish.toString());
+
+        try {
+            princess.moveTo(castle);
+        } catch(NotPositional ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        try {
+            urashima.follow(princess);
+        } catch(NotPositional ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        try {
+            fish.follow(urashima, princess);
+        } catch(NotPositional ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        System.out.println("-".repeat(50) + "\n");
+
         System.out.println(castle.toString());
         System.out.println("\n");
         castle.shine();
@@ -84,11 +122,14 @@ public class World {
 
         if(Math.random() > 0.5) {
             try {
-                urashima.go_to(turtle);
+                urashima.moveTo(turtle);
             } catch(NotPositional ex) {
                 System.out.println(ex.getMessage());
             }
         }
         urashima.remember(family,village);
+
+        urashima.setHomeSick(true);
+        princess.know(urashima);
     }
 }
