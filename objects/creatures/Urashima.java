@@ -12,6 +12,9 @@ public final class Urashima extends Human {
 
     public void setHomeSick(boolean input) {
         this.isHomeSick = input;
+        if(input) {
+            this.setEmotion(Emotion.Sad);
+        }
     }
     public void live(int years, Human ... with) {
         super.live(years);

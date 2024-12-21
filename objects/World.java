@@ -101,7 +101,6 @@ public class World {
         System.out.println("\n");
 
         System.out.println("-".repeat(50) + "\n");
-
         try {
             Sun sun = new Sun("Солнце", (Math.random() > 0.5 ? true : false));
             System.out.println(sun.toString());
@@ -128,7 +127,6 @@ public class World {
             }
         }
         urashima.remember(family,village);
-
         urashima.setHomeSick(true);
         princess.know(urashima);
     }

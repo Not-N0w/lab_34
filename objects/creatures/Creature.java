@@ -64,5 +64,4 @@ public abstract class Creature implements Positional{
         this.age += years;
     }
 
-
 }

@@ -6,9 +6,3 @@ class App {
         world.run();
     }
 }
-/*
- * EQUALS
- * HASHCODE
- *  - переделать
- * 
- */

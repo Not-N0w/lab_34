@@ -100,8 +100,10 @@ public class Human extends Creature {
         }
         Human human = (Human) obj; 
 
+
         return super.equals(human) && emotion == human.emotion &&
                java.util.Arrays.equals(thoughts, human.thoughts) &&
                canTalk == human.canTalk;
     }
+    
 }
